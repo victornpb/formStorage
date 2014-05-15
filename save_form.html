@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Untitled Document</title>
+<script src="formStorage.js"></script>
+</head>
+
+<body>
+
+<form action="" method="get" enctype="multipart/form-data" name="myform">
+
+  Nome:<input name="nome" id="myname" type="text" value=""/>
+  <p>Hidden:<input name="secret" type="hidden" value="1" /></p>
+  <p>
+    <label for="texto">Texto</label>
+    <textarea name="texto" id="texto" cols="45" rows="5"></textarea>
+  </p>
+  <p>
+    <label>
+      <input type="checkbox" name="Idiomas" value="pt" id="Idiomas_0" />
+      Portugues</label>
+    <br />
+    <label>
+      <input name="Idiomas" type="checkbox" id="Idiomas_1" value="en" />
+      Ingles</label>
+    <br />
+  </p>
+  <p>
+    <label>
+      <input name="sex" type="radio" id="sex_0" value="m" />
+      Masculino</label>
+    <br />
+    <label>
+      <input type="radio" name="sex" value="f" id="sex_1" />
+      Feminino</label>
+    <br />
+  </p>
+  <p>
+    <label for="select">Selecione</label>
+    <select name="select" id="select">
+      <option value="1">Azul</option>
+      <option value="2">Verde</option>
+      <option value="3">Vermelho</option>
+      <option value="4">Amarelo</option>
+    </select>
+  </p>
+  <p>
+    <label for="arquivo">Arquivo:</label>
+    <input type="file" name="arquivo" id="arquivo" />
+  </p>
+  <p>Botao
+    <input type="button" name="botao" id="botao" value="Button" placeholder="Click me" title="Oi" alt="isso eh um botao"/>
+  </p>
+</form>
+
+<hr />
+
+<input name="SALVAR" type="button" value="SALVAR" onclick="salva()"/>
+<input name="CARREGA" type="button" value="CARREGA" onclick="carrega()"/>
+<br />
+<textarea name="memoria" id="memoria" cols="80" rows="20"></textarea>
+
+</body>
+</html>
+
+<script type="text/javascript">
+
+var memoria=document.getElementById('memoria');
+
+function salva(){
+	memoria.value = saveFormToObject(document.myform,true);
+	
+	if(memoria.value.length>4000){
+		alert("This JSON is larger than 4KB, you can't use cookies to store this. Size:" + memoria.value.length);
+	}
+}
+
+function carrega(){
+	loadFormFromObject(document.myform, memoria.value,true);
+}
+
+</script>
